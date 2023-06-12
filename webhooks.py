@@ -41,7 +41,7 @@ def webhook():
     except Exception as e:
         if data["hook"]["type"] == "SponsorsListing":
             send_json = {
-                "content": "GitHub Sponsors webhook has successfully been added! (Using https://github.com/NexInfinite/supporter-discord-webhook)"
+                "content": "GitHub Sponsors webhook has successfully been added! (Forked from https://github.com/NexInfinite/supporter-discord-webhook)"
             }
             requests.post(f"https://discord.com/api/webhooks/{webhook_id}/{webhook_auth}", json=send_json)
             return "Setup complete! You will now receive notifications when someone sponsors you on GitHub!"

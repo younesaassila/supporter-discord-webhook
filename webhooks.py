@@ -31,7 +31,7 @@ def webhook():
             if action == "created":
                 title = f"{sponsor} is now {'privately ' if privacy_level == 'private' else ''}sponsoring {sponsorable} for {tier_name}"
             elif action == "tier_changed":
-                title = f"{sponsor} changed their sponsorship to {sponsorable} to {tier_name}"
+                title = f"{sponsor} changed their {'private ' if privacy_level == 'private' else ''}sponsorship to {sponsorable} to {tier_name}"
             else:
                 title = f"{sponsor} {action} their {tier_name} {'private ' if privacy_level == 'private' else ''}sponsorship to {sponsorable}"
             supporter_icon = sponsorship["sponsor"]["avatar_url"]

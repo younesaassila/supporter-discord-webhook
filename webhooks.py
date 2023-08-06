@@ -24,15 +24,16 @@ def webhook():
                 else:
                     color = 0xEC6CB9
             sponsorship = data["sponsorship"]
-            username = sponsorship["sponsor"]["login"]
+            sponsorable = sponsorship["sponsorable"]["login"]
+            sponsor = sponsorship["sponsor"]["login"]
             tier_name = sponsorship["tier"]["name"]
             privacy_level = sponsorship["privacy_level"]
             if action == "created":
-                title = f"{username} is now {'privately ' if privacy_level == 'private' else ''}sponsoring for {tier_name}"
+                title = f"{sponsor} is now {'privately ' if privacy_level == 'private' else ''}sponsoring {sponsorable} for {tier_name}"
             elif action == "tier_changed":
-                title = f"{username} changed their sponsorship tier to {tier_name}"
+                title = f"{sponsor} changed their sponsorship to {sponsorable} to {tier_name}"
             else:
-                title = f"{username} {action} their {tier_name} {'private ' if privacy_level == 'private' else ''}subscription"
+                title = f"{sponsor} {action} their {tier_name} {'private ' if privacy_level == 'private' else ''}sponsorship to {sponsorable}"
             supporter_icon = sponsorship["sponsor"]["avatar_url"]
             supporter_url_html = sponsorship["sponsor"]["html_url"]
             webhook_send_json = {
@@ -41,7 +42,7 @@ def webhook():
                         "color": color,
                         "title": title,
                         "author": {
-                            "name": username,
+                            "name": sponsor,
                             "icon_url": supporter_icon,
                             "url": supporter_url_html,
                         },

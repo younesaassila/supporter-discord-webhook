@@ -35,7 +35,7 @@ def webhook():
             else:
                 title = f"{sponsor} {action} their {tier_name} {'private ' if privacy_level == 'private' else ''}sponsorship to {sponsorable}"
             supporter_icon = sponsorship["sponsor"]["avatar_url"]
-            supporter_url_html = sponsorship["sponsor"]["html_url"]
+            supporter_url_html = f"https://github.com/{sponsorable}"  # Orgs don't have the "html_url" key
             webhook_send_json = {
                 "embeds": [
                     {
